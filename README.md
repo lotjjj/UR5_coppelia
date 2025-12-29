@@ -16,7 +16,7 @@ This repository hosts the examples that are shown [on wrapper documentation](htt
 To install your new environment, run the following commands:
 
 ```{shell}
-cd UR5-coppelia
+cd coppeliasim-UR5-gymnasium
 pip install -e .
 ```
 
