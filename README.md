@@ -13,13 +13,14 @@ This repository hosts the examples that are shown [on wrapper documentation](htt
 
 ## Installation
 
-To install your new environment, run the following commands:
+To install it into your new environment, run the following commands:
 
 ```{shell}
 pip install -e .
 ```
 
 ## Usage
+Once you have installed the package in virtual environment, head to your project and use the following commands:
 ```{python}
 import gymnasium
 import UR5_coppelia

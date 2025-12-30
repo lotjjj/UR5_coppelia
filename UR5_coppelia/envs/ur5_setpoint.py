@@ -132,29 +132,31 @@ class UR5Env(gym.Env):
         """
         重置环境
         """
-
         super().reset(seed=seed)
         self.current_step = 0
+
 
         # 随机初始化关节位置
         initial_positions = self.np_random.uniform(-np.pi / 3, np.pi / 3, size=6)
 
         # 设置关节为被动模式进行重置
-        self._set_joint_mode('kinematic')
+        self._set_joint_mode('position')
         for i, joint in enumerate(self.general_joints):
-            self.sim.setJointPosition(joint, float(initial_positions[i]))
+            self.sim.setJointTargetPosition(joint, float(initial_positions[i]))
 
-        self.sim.step()
+        for i in range(20):
+            self.sim.step()
 
+        observation = self._get_observation()
+
+        self._set_joint_mode(self.control_mode)
         # 获取初始观测
         observation = self._get_observation()
         self.state = observation
 
         # 获取初始信息
         info = self._get_info()
-
         # 设置关节为指定的控制模式
-        self._set_joint_mode(self.control_mode)
 
         return observation, info
 
